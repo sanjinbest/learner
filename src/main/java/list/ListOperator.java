@@ -38,8 +38,50 @@ public class ListOperator {
     }
 
     public boolean insert(Node head,int index,Node node){
+        if(index == 1){
+            node.next = head;
+            return true;
+        }
 
-        return false;
+        Node pre = head;
+        int i = 1;
+        while(i < index - 1){
+            pre = pre.next;
+            if(pre == null && i < index){
+                System.out.println("list index out of range "+i);
+                return false;
+            }
+
+            i++;
+        }
+
+        Node next = pre.next;
+        pre.next = node;
+        node.next = next;
+
+        return true;
+    }
+
+    public boolean remove(Node head,int index){
+        Node pre = head;
+        int i = 1;
+        while(i < index - 1){
+            pre = pre.next;
+            if(pre.next == null){
+                System.out.println("list index out of range "+i);
+                return false;
+            }
+
+            i++;
+        }
+
+
+        Node next = pre.next;
+        if(next != null){
+            pre.next = next.next;
+        }
+
+        return true;
     }
 
     public void clearList(Node head){
@@ -68,9 +110,19 @@ public class ListOperator {
         Node head = listOperator.initListTail(3);
         listOperator.listLIst(head);
 
-        System.out.println("=================================");
-        listOperator.clearList(head);
+        System.out.println("-----------------------");
+
+        Node node = new Node();
+        node.data = 111;
+        listOperator.insert(head,1,node);
         listOperator.listLIst(head);
+//
+//        listOperator.remove(head,2);
+//        listOperator.listLIst(head);
+
+//        System.out.println("=================================");
+//        listOperator.clearList(head);
+//        listOperator.listLIst(head);
 
     }
 }
