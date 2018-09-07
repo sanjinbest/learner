@@ -1,5 +1,8 @@
 package list;
 
+/**
+ * 静态链表实现
+ */
 public class StaticList {
 
     private Node[] elements;
